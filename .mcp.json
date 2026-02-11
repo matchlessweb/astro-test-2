@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ide": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        ".devcontainer/ide-bridge.js"
+      ]
+    }
+  }
+}
