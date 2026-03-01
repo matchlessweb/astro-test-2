@@ -1,129 +1,553 @@
 ---
-import { Star, Zap, ArrowRight, ArrowDown, Palette, Cloud } from 'lucide-astro';
-
-/**
- * Hero Component
- * A customizable hero section with gradient background, floating elements, and CTAs.
- */
+import { ArrowRight } from 'lucide-astro';
 
 interface Props {
-    title?: string;
-    subtitle?: string;
-    badgeText?: string;
-    ctaText?: string;
-    ctaHref?: string;
-    showStats?: boolean;
+  title?: string;
+  subtitle?: string;
+  badgeText?: string;
+  badgeLabel?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
 }
 
-const { 
-    title = '<span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Build Amazing</span><br /><span class="text-white">Web Experiences</span>',
-    subtitle = 'Your lightning-fast Astro site is ready. Start creating beautiful, performant web applications with modern tools.',
-    badgeText = 'Powered by Astro',
-    ctaText = 'Get Started',
-    ctaHref = 'https://docs.astro.build',
-    showStats = true
+const {
+  title = 'You Need a<br /><span class="hero-highlight">Web Consultant</span> Not a<br />Web Designer',
+  badgeLabel = 'Available',
+  badgeText = 'Get in touch',
+  primaryCtaText = 'Book a call',
+  primaryCtaHref = '/contact',
+  secondaryCtaText = 'Work',
+  secondaryCtaHref = '/work',
 } = Astro.props;
 ---
 
-<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-    <!-- Animated Dark Gradient Background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-purple-900/10 to-blue-900/20"></div>
-    
-    <!-- Animated Grid Pattern -->
-    <div class="absolute inset-0 opacity-40">
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,var(--color-outline)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-outline)_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#020204]">
+  <!-- Black hole canvas -->
+  <canvas id="blackhole-canvas" class="absolute inset-0 w-full h-full"></canvas>
+
+  <!-- Accretion disk glow (CSS layers for depth) -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle,transparent_15%,rgba(92,206,160,0.04)_30%,rgba(92,206,160,0.08)_45%,rgba(92,206,160,0.03)_60%,transparent_75%)] hero-accretion-pulse"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,transparent_20%,rgba(92,206,160,0.06)_40%,transparent_65%)] hero-accretion-spin"></div>
+
+  <!-- Event horizon void -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90px] h-[90px] rounded-full bg-[#020204] shadow-[0_0_60px_20px_rgba(0,0,0,0.9),0_0_120px_60px_rgba(0,0,0,0.6)]"></div>
+
+  <!-- Photon ring -->
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110px] h-[110px] rounded-full border border-[#5ccea0]/20 hero-photon-ring"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130px] h-[130px] rounded-full border border-[#5ccea0]/10 hero-photon-ring-outer"></div>
+
+  <!-- Vignette -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(2,2,4,0.7)_100%)]"></div>
+
+  <div class="relative z-10 w-full max-w-4xl mx-auto px-6 py-32 text-center">
+    <!-- Status badge pill -->
+    <div class="hero-fade-in inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm mb-14">
+      <span class="flex items-center gap-2 text-sm font-medium text-[#5ccea0]">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-[#5ccea0] opacity-60 animate-ping"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-[#5ccea0]"></span>
+        </span>
+        {badgeLabel}
+      </span>
+      <span class="w-px h-4 bg-white/20"></span>
+      <span class="text-sm text-gray-300">{badgeText}</span>
     </div>
-    
-    <!-- Glowing Orbs -->
-    <div class="absolute top-1/4 -left-32 w-96 h-96 bg-primary/40 rounded-full blur-[128px] animate-pulse"></div>
-    <div class="absolute bottom-1/4 -right-32 w-96 h-96 bg-purple-500/30 rounded-full blur-[128px] animate-pulse [animation-delay:1s]"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-[100px]"></div>
-    
-    <!-- Floating Shapes -->
-    <div class="absolute top-20 right-[15%] w-20 h-20 border border-primary/40 rounded-2xl rotate-12 animate-bounce"></div>
-    <div class="absolute bottom-32 left-[10%] w-16 h-16 bg-primary/20 rounded-full animate-pulse"></div>
-    <div class="absolute top-1/3 left-[20%] w-3 h-3 bg-primary rounded-full animate-ping"></div>
-    <div class="absolute bottom-1/3 right-[25%] w-2 h-2 bg-primary-light rounded-full animate-ping"></div>
-    
-    <div class="container mx-auto px-4 py-20 md:py-32 relative z-10">
-        <div class="max-w-4xl mx-auto text-center">
-            <!-- Badge -->
-            {badgeText && (
-                <div class="inline-flex items-center gap-3 px-5 py-2.5 bg-black/40 backdrop-blur-xl rounded-full border border-white/20 shadow-lg shadow-primary/20 mb-10">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-primary to-primary-light"></span>
-                    </span>
-                    <span class="text-sm font-semibold text-white tracking-wide">{badgeText}</span>
-                    <Star class="w-4 h-4 text-white fill-white" />
-                </div>
-            )}
-            
-            <!-- Main Heading -->
-            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-[1.1] tracking-tight text-white" set:html={title} />
-            
-            <p class="text-lg sm:text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed max-w-2xl mx-auto">
-                {subtitle}
-            </p>
-            
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a 
-                    href={ctaHref} 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary-dark text-white rounded-2xl font-bold text-lg shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1 transition-all duration-300 overflow-hidden cursor-pointer"
-                >
-                    <span class="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-                    <Zap class="w-5 h-5 relative z-10" />
-                    <span class="relative z-10">{ctaText}</span>
-                    <ArrowRight class="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-                </a>
-                <a 
-                    href="#features"
-                    class="group inline-flex items-center gap-2 px-8 py-4 bg-white/10 border-2 border-white/20 hover:border-white hover:bg-white/20 text-white rounded-2xl font-semibold text-lg backdrop-blur-sm transition-all duration-300 cursor-pointer"
-                >
-                    <span>Learn More</span>
-                    <ArrowDown class="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
-                </a>
-                <slot name="secondary-cta" />
-            </div>
-            
-            <!-- Stats or Trust Indicators -->
-            {showStats && (
-                <div class="mt-20 pt-12 border-t border-white/20">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
-                        <div class="group text-center">
-                            <div class="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl border border-primary/20 group-hover:scale-110 group-hover:border-primary/40 transition-all duration-300">
-                                <Zap class="w-8 h-8 text-primary" />
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-1">Lightning Fast</h3>
-                            <p class="text-sm text-gray-300">Zero JS by default</p>
-                        </div>
-                        <div class="group text-center">
-                            <div class="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl border border-primary/20 group-hover:scale-110 group-hover:border-primary/40 transition-all duration-300">
-                                <Palette class="w-8 h-8 text-primary" />
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-1">Beautiful Design</h3>
-                            <p class="text-sm text-gray-300">Tailwind CSS powered</p>
-                        </div>
-                        <div class="group text-center">
-                            <div class="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl border border-primary/20 group-hover:scale-110 group-hover:border-primary/40 transition-all duration-300">
-                                <Cloud class="w-8 h-8 text-primary" />
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-1">Deploy Anywhere</h3>
-                            <p class="text-sm text-gray-300">Edge-ready hosting</p>
-                        </div>
-                    </div>
-                </div>
-            )}
-            
-            <slot />
-        </div>
+
+    <!-- Heading -->
+    <h1
+      class="hero-fade-in-up text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-light text-white leading-[1.1] tracking-tight mb-14"
+      set:html={title}
+    />
+
+    <!-- CTA buttons -->
+    <div class="hero-fade-in-up-delayed flex flex-wrap items-center justify-center gap-4">
+      <a
+        href={primaryCtaHref}
+        class="group inline-flex items-center gap-2 px-7 py-3.5 bg-[#5ccea0] hover:bg-[#4dbd90] text-[#020204] font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#5ccea0]/25"
+      >
+        {primaryCtaText}
+        <ArrowRight class="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-300" />
+      </a>
+      <a
+        href={secondaryCtaHref}
+        class="inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 hover:border-white/40 text-white font-medium rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/5"
+      >
+        {secondaryCtaText}
+      </a>
+      <slot name="secondary-cta" />
     </div>
-    
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ArrowDown class="w-6 h-6 text-gray-300" />
-    </div>
+
+    <slot />
+  </div>
 </section>
+
+<script>
+  const canvas = document.getElementById('blackhole-canvas') as HTMLCanvasElement;
+  const ctx = canvas.getContext('2d')!;
+
+  let w = 0, h = 0, cx = 0, cy = 0;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = canvas.parentElement!.getBoundingClientRect();
+    w = rect.width;
+    h = rect.height;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.scale(dpr, dpr);
+    cx = w / 2;
+    cy = h / 2;
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  interface Star {
+    angle: number;
+    dist: number;
+    speed: number;
+    size: number;
+    brightness: number;
+    hue: number;       // 0 = white, 1 = green tinted
+    trail: number;     // trail length factor
+    origDist: number;
+  }
+
+  const STAR_COUNT = 220;
+  const EVENT_HORIZON = 45;
+  const MAX_DIST = Math.max(w, h) * 0.9;
+
+  function createStar(startDist?: number): Star {
+    const dist = startDist ?? (EVENT_HORIZON + Math.random() * MAX_DIST);
+    return {
+      angle: Math.random() * Math.PI * 2,
+      dist,
+      origDist: dist,
+      speed: 0.0008 + Math.random() * 0.0016,
+      size: 0.5 + Math.random() * 2,
+      brightness: 0.3 + Math.random() * 0.7,
+      hue: Math.random() < 0.3 ? 1 : 0,
+      trail: 0.3 + Math.random() * 0.7,
+    };
+  }
+
+  let stars: Star[] = Array.from({ length: STAR_COUNT }, () => createStar());
+
+  // Background static stars (distant, not affected by gravity)
+  interface BgStar { x: number; y: number; size: number; twinkleSpeed: number; twinkleOffset: number; }
+  const BG_STAR_COUNT = 150;
+  const bgStars: BgStar[] = Array.from({ length: BG_STAR_COUNT }, () => ({
+    x: Math.random(),
+    y: Math.random(),
+    size: 0.3 + Math.random() * 1.2,
+    twinkleSpeed: 0.5 + Math.random() * 2,
+    twinkleOffset: Math.random() * Math.PI * 2,
+  }));
+
+  let time = 0;
+
+  function draw() {
+    time += 0.016;
+    ctx.clearRect(0, 0, w, h);
+
+    // Draw background stars with twinkle
+    bgStars.forEach(s => {
+      const alpha = 0.15 + 0.2 * Math.sin(time * s.twinkleSpeed + s.twinkleOffset);
+      // Check if star is behind the black hole void
+      const sx = s.x * w;
+      const sy = s.y * h;
+      const dFromCenter = Math.sqrt((sx - cx) ** 2 + (sy - cy) ** 2);
+      if (dFromCenter < EVENT_HORIZON + 20) return;
+
+      // Dim stars near the black hole (gravitational dimming)
+      const dimFactor = dFromCenter < 150 ? (dFromCenter - EVENT_HORIZON - 20) / (150 - EVENT_HORIZON - 20) : 1;
+      if (dimFactor <= 0) return;
+
+      ctx.beginPath();
+      ctx.arc(sx, sy, s.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha * Math.max(0, dimFactor)})`;
+      ctx.fill();
+    });
+
+    // Draw accretion disk glow on canvas
+    const accGrad = ctx.createRadialGradient(cx, cy, EVENT_HORIZON, cx, cy, 250);
+    accGrad.addColorStop(0, 'rgba(92,206,160,0)');
+    accGrad.addColorStop(0.3, `rgba(92,206,160,${0.02 + 0.01 * Math.sin(time * 0.5)})`);
+    accGrad.addColorStop(0.5, `rgba(92,206,160,${0.04 + 0.02 * Math.sin(time * 0.7)})`);
+    accGrad.addColorStop(0.7, 'rgba(92,206,160,0.01)');
+    accGrad.addColorStop(1, 'rgba(92,206,160,0)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, 250, 0, Math.PI * 2);
+    ctx.fillStyle = accGrad;
+    ctx.fill();
+
+    // Update and draw spiraling stars
+    stars.forEach((star, i) => {
+      // Gravitational acceleration: stronger as star gets closer
+      const pullStrength = 8000 / (star.dist * star.dist + 100);
+      star.dist -= (0.06 + pullStrength * 0.4) * (1 + (1 - star.dist / MAX_DIST) * 2);
+
+      // Angular velocity increases as star spirals in (conservation of angular momentum)
+      const angularSpeed = star.speed * (star.origDist / Math.max(star.dist, EVENT_HORIZON)) * 0.25;
+      star.angle += angularSpeed;
+
+      // Respawn if consumed
+      if (star.dist <= EVENT_HORIZON) {
+        const newStar = createStar(MAX_DIST * (0.7 + Math.random() * 0.3));
+        stars[i] = newStar;
+        return;
+      }
+
+      const x = cx + Math.cos(star.angle) * star.dist;
+      const y = cy + Math.sin(star.angle) * star.dist;
+
+      // Stretch factor: stars elongate as they get closer
+      const stretch = Math.min(3, 1 + (1 - star.dist / MAX_DIST) * 4);
+
+      // Color: white or green-tinted, brightening near event horizon
+      const proximityBright = Math.min(1, 0.4 + (1 - star.dist / MAX_DIST) * 1.5);
+      const alpha = star.brightness * proximityBright;
+
+      // Draw trail
+      if (star.dist < MAX_DIST * 0.6) {
+        const trailLen = star.trail * stretch * 8;
+        const trailAngle = star.angle - angularSpeed * trailLen;
+        const trailDist = star.dist + 2 * stretch;
+        const tx = cx + Math.cos(trailAngle) * trailDist;
+        const ty = cy + Math.sin(trailAngle) * trailDist;
+
+        const gradient = ctx.createLinearGradient(x, y, tx, ty);
+        if (star.hue) {
+          gradient.addColorStop(0, `rgba(92,206,160,${alpha * 0.8})`);
+          gradient.addColorStop(1, `rgba(92,206,160,0)`);
+        } else {
+          gradient.addColorStop(0, `rgba(255,255,255,${alpha * 0.6})`);
+          gradient.addColorStop(1, `rgba(255,255,255,0)`);
+        }
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(tx, ty);
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = star.size * 0.8;
+        ctx.stroke();
+      }
+
+      // Draw star
+      ctx.beginPath();
+      ctx.arc(x, y, star.size * Math.min(1.5, stretch * 0.5), 0, Math.PI * 2);
+      if (star.hue) {
+        ctx.fillStyle = `rgba(92,206,160,${alpha})`;
+      } else {
+        // Near the hole, shift to slight blue-white
+        const r = Math.min(255, 200 + proximityBright * 55);
+        const g = Math.min(255, 210 + proximityBright * 45);
+        const b = 255;
+        ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+      }
+      ctx.fill();
+    });
+
+    // Draw gravitational lensing ring (bright ring at event horizon edge)
+    const lensGrad = ctx.createRadialGradient(cx, cy, EVENT_HORIZON - 5, cx, cy, EVENT_HORIZON + 25);
+    lensGrad.addColorStop(0, 'rgba(92,206,160,0)');
+    lensGrad.addColorStop(0.4, `rgba(92,206,160,${0.06 + 0.03 * Math.sin(time * 1.2)})`);
+    lensGrad.addColorStop(0.6, `rgba(255,255,255,${0.04 + 0.02 * Math.sin(time * 0.9)})`);
+    lensGrad.addColorStop(1, 'rgba(92,206,160,0)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, EVENT_HORIZON + 25, 0, Math.PI * 2);
+    ctx.fillStyle = lensGrad;
+    ctx.fill();
+
+    // Draw drifting object (satellite / rocket)
+    drawDrifter(ctx, time);
+
+    requestAnimationFrame(draw);
+  }
+
+  // --- Drifting satellite / rocket system ---
+  interface Drifter {
+    type: 'satellite' | 'rocket';
+    startX: number;
+    startY: number;
+    endX: number;
+    endY: number;
+    y: number;
+    angle: number;
+    progress: number;
+    speed: number;
+    size: number;
+    wobble: number;
+    active: boolean;
+  }
+
+  let drifter: Drifter | null = null;
+  let nextDrifterTime = 5 + Math.random() * 8; // first one at 5-13s
+  let lastType: 'satellite' | 'rocket' = 'rocket'; // so first is satellite
+
+  function spawnDrifter(): Drifter {
+    const type: 'satellite' | 'rocket' = lastType === 'satellite' ? 'rocket' : 'satellite';
+    lastType = type;
+
+    // Random edge: pick a side to enter and exit
+    const enterSide = Math.random() < 0.5 ? 'left' : 'right';
+    const yBand = 0.15 + Math.random() * 0.35; // top 15-50% of screen
+    const startX = enterSide === 'left' ? -40 : w + 40;
+    const endX = enterSide === 'left' ? w + 40 : -40;
+    const startY = h * yBand;
+    const endY = startY + (Math.random() - 0.5) * h * 0.2;
+    const angle = Math.atan2(endY - startY, endX - startX);
+
+    return {
+      type,
+      startX,
+      startY,
+      endX,
+      endY,
+      y: startY,
+      angle,
+      progress: 0,
+      speed: type === 'rocket' ? 0.0003 + Math.random() * 0.0002 : 0.00015 + Math.random() * 0.0001,
+      size: type === 'rocket' ? 10 : 12,
+      wobble: Math.random() * 1000,
+      active: true,
+    };
+  }
+
+  function drawSatellite(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, time: number) {
+    ctx.save();
+    ctx.translate(x, y);
+    const rot = time * 0.3;
+    ctx.rotate(rot);
+
+    // Body (small box)
+    ctx.fillStyle = 'rgba(180, 200, 220, 0.9)';
+    ctx.fillRect(-size * 0.25, -size * 0.25, size * 0.5, size * 0.5);
+
+    // Solar panels
+    ctx.fillStyle = 'rgba(60, 120, 200, 0.8)';
+    ctx.fillRect(-size, -size * 0.15, size * 0.65, size * 0.3);
+    ctx.fillRect(size * 0.35, -size * 0.15, size * 0.65, size * 0.3);
+
+    // Panel lines
+    ctx.strokeStyle = 'rgba(100, 160, 240, 0.5)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.65, -size * 0.15);
+    ctx.lineTo(-size * 0.65, size * 0.15);
+    ctx.moveTo(-size * 0.35, -size * 0.15);
+    ctx.lineTo(-size * 0.35, size * 0.15);
+    ctx.moveTo(size * 0.65, -size * 0.15);
+    ctx.lineTo(size * 0.65, size * 0.15);
+    ctx.stroke();
+
+    // Blinking light
+    const blink = Math.sin(time * 3) > 0.3;
+    if (blink) {
+      ctx.fillStyle = 'rgba(255, 80, 80, 0.9)';
+      ctx.beginPath();
+      ctx.arc(0, -size * 0.3, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.restore();
+
+    // Subtle glow
+    ctx.fillStyle = 'rgba(150, 200, 255, 0.06)';
+    ctx.beginPath();
+    ctx.arc(x, y, size * 2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawRocket(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, angle: number, time: number) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+
+    // Rocket body
+    ctx.fillStyle = 'rgba(220, 220, 230, 0.9)';
+    ctx.beginPath();
+    ctx.moveTo(size, 0); // nose
+    ctx.lineTo(-size * 0.6, -size * 0.3);
+    ctx.lineTo(-size * 0.8, 0);
+    ctx.lineTo(-size * 0.6, size * 0.3);
+    ctx.closePath();
+    ctx.fill();
+
+    // Nose cone accent
+    ctx.fillStyle = 'rgba(92, 206, 160, 0.7)';
+    ctx.beginPath();
+    ctx.moveTo(size, 0);
+    ctx.lineTo(size * 0.5, -size * 0.15);
+    ctx.lineTo(size * 0.5, size * 0.15);
+    ctx.closePath();
+    ctx.fill();
+
+    // Fins
+    ctx.fillStyle = 'rgba(92, 206, 160, 0.6)';
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.6, -size * 0.3);
+    ctx.lineTo(-size, -size * 0.6);
+    ctx.lineTo(-size * 0.8, -size * 0.1);
+    ctx.closePath();
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.6, size * 0.3);
+    ctx.lineTo(-size, size * 0.6);
+    ctx.lineTo(-size * 0.8, size * 0.1);
+    ctx.closePath();
+    ctx.fill();
+
+    // Flame exhaust
+    const flicker = 0.7 + 0.3 * Math.sin(time * 20);
+    const flameLen = size * (0.6 + 0.3 * Math.sin(time * 15));
+    const grad = ctx.createLinearGradient(-size * 0.8, 0, -size * 0.8 - flameLen, 0);
+    grad.addColorStop(0, `rgba(255, 200, 50, ${0.9 * flicker})`);
+    grad.addColorStop(0.4, `rgba(255, 120, 20, ${0.6 * flicker})`);
+    grad.addColorStop(1, 'rgba(255, 60, 20, 0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(-size * 0.8, -size * 0.15);
+    ctx.lineTo(-size * 0.8 - flameLen, 0);
+    ctx.lineTo(-size * 0.8, size * 0.15);
+    ctx.closePath();
+    ctx.fill();
+
+    // Window
+    ctx.fillStyle = 'rgba(150, 220, 255, 0.8)';
+    ctx.beginPath();
+    ctx.arc(size * 0.15, 0, size * 0.1, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+
+    // Engine glow
+    const glowX = x - Math.cos(angle) * size * 0.8;
+    const glowY = y - Math.sin(angle) * size * 0.8;
+    ctx.fillStyle = `rgba(255, 150, 50, ${0.04 * flicker})`;
+    ctx.beginPath();
+    ctx.arc(glowX, glowY, size * 2.5, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function drawDrifter(ctx: CanvasRenderingContext2D, time: number) {
+    // Check if we should spawn a new drifter
+    if (!drifter || !drifter.active) {
+      if (time > nextDrifterTime) {
+        drifter = spawnDrifter();
+      } else {
+        return;
+      }
+    }
+
+    const d = drifter;
+    d.progress += d.speed;
+
+    // Ease in/out for smooth entry and exit
+    const eased = d.progress; // linear for steady drift
+    const x = d.startX + (d.endX - d.startX) * eased;
+    const y = d.startY + (d.endY - d.startY) * eased + Math.sin(time * 0.8 + d.wobble) * 8;
+
+    // Fade in/out at edges
+    const fadeIn = Math.min(d.progress * 8, 1);
+    const fadeOut = Math.min((1 - d.progress) * 8, 1);
+    const alpha = fadeIn * fadeOut;
+
+    if (alpha <= 0 || d.progress > 1) {
+      d.active = false;
+      nextDrifterTime = time + 12 + Math.random() * 15; // 12-27s until next
+      return;
+    }
+
+    ctx.globalAlpha = alpha;
+
+    if (d.type === 'satellite') {
+      drawSatellite(ctx, x, y, d.size, time);
+    } else {
+      drawRocket(ctx, x, y, d.size, d.angle, time);
+    }
+
+    ctx.globalAlpha = 1;
+  }
+
+  requestAnimationFrame(draw);
+</script>
+
+<style is:global>
+  .hero-accretion-pulse {
+    animation: accretionPulse 6s ease-in-out infinite;
+  }
+  .hero-accretion-spin {
+    animation: accretionSpin 30s linear infinite;
+  }
+  .hero-photon-ring {
+    animation: photonRing 4s ease-in-out infinite;
+    box-shadow: 0 0 15px rgba(92, 206, 160, 0.1), inset 0 0 15px rgba(92, 206, 160, 0.05);
+  }
+  .hero-photon-ring-outer {
+    animation: photonRing 5s ease-in-out 1s infinite;
+  }
+
+  @keyframes accretionPulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  }
+
+  @keyframes accretionSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes photonRing {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+  }
+
+  .hero-highlight {
+    background: linear-gradient(135deg, #5ccea0, #7edbb8, #5ccea0);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: heroHighlightShimmer 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(92, 206, 160, 0.25));
+  }
+
+  @keyframes heroHighlightShimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .hero-fade-in {
+    animation: heroFadeIn 0.8s ease-out both;
+  }
+  .hero-fade-in-up {
+    animation: heroFadeInUp 0.8s ease-out 0.2s both;
+  }
+  .hero-fade-in-up-delayed {
+    animation: heroFadeInUp 0.8s ease-out 0.4s both;
+  }
+
+  @keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes heroFadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-accretion-pulse,
+    .hero-accretion-spin,
+    .hero-photon-ring,
+    .hero-photon-ring-outer {
+      animation: none !important;
+    }
+    #blackhole-canvas {
+      display: none;
+    }
+  }
+</style>
