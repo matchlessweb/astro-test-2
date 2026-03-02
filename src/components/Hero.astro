@@ -13,7 +13,7 @@ interface Props {
 }
 
 const {
-  title = 'You Need a<br /><span class="hero-highlight">Web Consultant</span> Not a<br />Web Designer',
+  title = 'You Need a<br /><span class="hero-highlight">Web Consultant<span class="corner-bl"></span><span class="corner-br"></span></span> Not a<br />Web Designer',
   badgeLabel = 'Available',
   badgeText = 'Get in touch',
   primaryCtaText = 'Book a call',
@@ -505,18 +505,62 @@ const {
   }
 
   .hero-highlight {
-    background: linear-gradient(135deg, #5ccea0, #7edbb8, #5ccea0);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: heroHighlightShimmer 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(92, 206, 160, 0.25));
+    display: inline-block;
+    position: relative;
+    border: 2px dashed rgba(92, 206, 160, 0.5);
+    padding: 0.05em 0.25em;
+    color: white;
   }
 
-  @keyframes heroHighlightShimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+  /* Crosshair corner markers */
+  .hero-highlight::before,
+  .hero-highlight::after,
+  .hero-highlight > .corner-bl,
+  .hero-highlight > .corner-br {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+  }
+
+  /* Shared crosshair shape via box-shadow on pseudo-elements */
+  .hero-highlight::before,
+  .hero-highlight::after {
+    background:
+      linear-gradient(rgba(92,206,160,0.7), rgba(92,206,160,0.7)) center / 1.5px 100% no-repeat,
+      linear-gradient(rgba(92,206,160,0.7), rgba(92,206,160,0.7)) center / 100% 1.5px no-repeat;
+  }
+
+  /* Top-left */
+  .hero-highlight::before {
+    top: -8px;
+    left: -8px;
+  }
+
+  /* Top-right */
+  .hero-highlight::after {
+    top: -8px;
+    right: -8px;
+  }
+
+  .hero-highlight > .corner-bl,
+  .hero-highlight > .corner-br {
+    background:
+      linear-gradient(rgba(92,206,160,0.7), rgba(92,206,160,0.7)) center / 1.5px 100% no-repeat,
+      linear-gradient(rgba(92,206,160,0.7), rgba(92,206,160,0.7)) center / 100% 1.5px no-repeat;
+  }
+
+  /* Bottom-left */
+  .hero-highlight > .corner-bl {
+    bottom: -8px;
+    left: -8px;
+  }
+
+  /* Bottom-right */
+  .hero-highlight > .corner-br {
+    bottom: -8px;
+    right: -8px;
   }
 
   .hero-fade-in {

@@ -12,8 +12,8 @@
  * ============================================================
  */
 
-@theme {  --font-sans: 'Inter Variable', 'Inter', system-ui, sans-serif;
-  --font-heading: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+@theme {  --font-sans: 'Urbanist Variable', 'Urbanist', system-ui, sans-serif;
+  --font-heading: 'Urbanist Variable', 'Urbanist', system-ui, sans-serif;
 
 --color-primary: #6366f1;
         --color-primary-dark: #4f46e5;
