@@ -1,0 +1,113 @@
+---
+/**
+ * Full-width blueprint architectural drawing banner.
+ * Decorative divider with CSS-generated blueprint pattern and gradient fade.
+ */
+---
+
+<section class="relative w-full h-36 sm:h-44 md:h-52 lg:h-60 overflow-hidden bg-[#2068b4]">
+  <!-- Fine grid lines -->
+  <div
+    class="absolute inset-0 opacity-15"
+    style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 18px 18px;"
+  ></div>
+
+  <!-- Major grid lines -->
+  <div
+    class="absolute inset-0 opacity-20"
+    style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 90px 90px;"
+  ></div>
+
+  <!-- Blueprint architectural elements via SVG -->
+  <svg class="absolute inset-0 w-full h-full opacity-40" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <!-- Room outlines -->
+    <rect x="5%" y="15%" width="18%" height="55%" fill="none" stroke="white" stroke-width="1.5"/>
+    <rect x="5%" y="70%" width="18%" height="25%" fill="none" stroke="white" stroke-width="1"/>
+    <rect x="23%" y="15%" width="12%" height="35%" fill="none" stroke="white" stroke-width="1.5"/>
+    <rect x="23%" y="50%" width="12%" height="45%" fill="none" stroke="white" stroke-width="1.5"/>
+    <rect x="35%" y="10%" width="22%" height="50%" fill="none" stroke="white" stroke-width="1.5"/>
+    <rect x="35%" y="60%" width="22%" height="35%" fill="none" stroke="white" stroke-width="1"/>
+    <rect x="57%" y="15%" width="15%" height="40%" fill="none" stroke="white" stroke-width="1.5"/>
+    <rect x="57%" y="55%" width="15%" height="40%" fill="none" stroke="white" stroke-width="1"/>
+    <rect x="72%" y="10%" width="18%" height="55%" fill="none" stroke="white" stroke-width="1.5"/>
+    <rect x="72%" y="65%" width="18%" height="30%" fill="none" stroke="white" stroke-width="1"/>
+
+    <!-- Interior walls -->
+    <line x1="12%" y1="15%" x2="12%" y2="55%" stroke="white" stroke-width="1" opacity="0.7"/>
+    <line x1="5%" y1="42%" x2="23%" y2="42%" stroke="white" stroke-width="1" opacity="0.7"/>
+    <line x1="40%" y1="10%" x2="40%" y2="60%" stroke="white" stroke-width="1" opacity="0.7"/>
+    <line x1="35%" y1="35%" x2="57%" y2="35%" stroke="white" stroke-width="1" opacity="0.7"/>
+    <line x1="50%" y1="60%" x2="50%" y2="95%" stroke="white" stroke-width="1" opacity="0.7"/>
+    <line x1="63%" y1="15%" x2="63%" y2="55%" stroke="white" stroke-width="1" opacity="0.7"/>
+    <line x1="80%" y1="10%" x2="80%" y2="65%" stroke="white" stroke-width="1" opacity="0.7"/>
+    <line x1="72%" y1="38%" x2="90%" y2="38%" stroke="white" stroke-width="1" opacity="0.7"/>
+
+    <!-- Door arcs -->
+    <path d="M 14% 42% A 4 4 0 0 1 18% 42%" fill="none" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <path d="M 42% 35% A 3 3 0 0 1 45% 35%" fill="none" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <path d="M 63% 30% A 3 3 0 0 0 63% 27%" fill="none" stroke="white" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- Dimension lines -->
+    <line x1="5%" y1="8%" x2="23%" y2="8%" stroke="white" stroke-width="0.5" opacity="0.5"/>
+    <line x1="5%" y1="6%" x2="5%" y2="10%" stroke="white" stroke-width="0.5" opacity="0.5"/>
+    <line x1="23%" y1="6%" x2="23%" y2="10%" stroke="white" stroke-width="0.5" opacity="0.5"/>
+    <line x1="35%" y1="5%" x2="57%" y2="5%" stroke="white" stroke-width="0.5" opacity="0.5"/>
+    <line x1="35%" y1="3%" x2="35%" y2="7%" stroke="white" stroke-width="0.5" opacity="0.5"/>
+    <line x1="57%" y1="3%" x2="57%" y2="7%" stroke="white" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- Staircase -->
+    <line x1="24%" y1="18%" x2="34%" y2="18%" stroke="white" stroke-width="0.6" opacity="0.5"/>
+    <line x1="24%" y1="21%" x2="34%" y2="21%" stroke="white" stroke-width="0.6" opacity="0.5"/>
+    <line x1="24%" y1="24%" x2="34%" y2="24%" stroke="white" stroke-width="0.6" opacity="0.5"/>
+    <line x1="24%" y1="27%" x2="34%" y2="27%" stroke="white" stroke-width="0.6" opacity="0.5"/>
+    <line x1="24%" y1="30%" x2="34%" y2="30%" stroke="white" stroke-width="0.6" opacity="0.5"/>
+    <line x1="24%" y1="33%" x2="34%" y2="33%" stroke="white" stroke-width="0.6" opacity="0.5"/>
+
+    <!-- Window marks -->
+    <line x1="35%" y1="22%" x2="35%" y2="28%" stroke="white" stroke-width="2.5" opacity="0.3"/>
+    <line x1="57%" y1="25%" x2="57%" y2="32%" stroke="white" stroke-width="2.5" opacity="0.3"/>
+    <line x1="72%" y1="20%" x2="72%" y2="26%" stroke="white" stroke-width="2.5" opacity="0.3"/>
+
+    <!-- Text labels -->
+    <text x="10%" y="38%" fill="white" font-size="6" font-family="monospace" opacity="0.5">PARKING</text>
+    <text x="38%" y="30%" fill="white" font-size="7" font-family="monospace" opacity="0.5">BEDROOM</text>
+    <text x="26%" y="65%" fill="white" font-size="5" font-family="monospace" opacity="0.5">STORAGE</text>
+    <text x="59%" y="30%" fill="white" font-size="6" font-family="monospace" opacity="0.5">CLOSET</text>
+    <text x="74%" y="30%" fill="white" font-size="6" font-family="monospace" opacity="0.5">DINING</text>
+    <text x="38%" y="75%" fill="white" font-size="5" font-family="monospace" opacity="0.5">EXISTING PORCH</text>
+    <text x="62%" y="72%" fill="white" font-size="5" font-family="monospace" opacity="0.5">COVERED PORCH</text>
+    <text x="25%" y="42%" fill="white" font-size="6" font-family="monospace" opacity="0.5">BATHROOM</text>
+    <text x="75%" y="55%" fill="white" font-size="5" font-family="monospace" opacity="0.5">WINDOW</text>
+
+    <!-- Dimension measurements -->
+    <text x="11%" y="7%" fill="white" font-size="4" font-family="monospace" opacity="0.4">11 7/8" T.O. 8' O.C.</text>
+    <text x="42%" y="4%" fill="white" font-size="4" font-family="monospace" opacity="0.4">22'-3 1/2"</text>
+
+    <!-- Circle markers / detail callouts -->
+    <circle cx="45%" cy="48%" r="1.5%" fill="none" stroke="white" stroke-width="0.8" opacity="0.4"/>
+    <text x="44%" y="49%" fill="white" font-size="5" font-family="monospace" opacity="0.4">D6</text>
+    <circle cx="67%" cy="45%" r="1.2%" fill="none" stroke="white" stroke-width="0.8" opacity="0.4"/>
+    <text x="66%" y="46%" fill="white" font-size="4" font-family="monospace" opacity="0.4">D8</text>
+    <circle cx="85%" cy="75%" r="1.8%" fill="none" stroke="white" stroke-width="0.8" opacity="0.4"/>
+    <text x="84%" y="76%" fill="white" font-size="5" font-family="monospace" opacity="0.4">A10</text>
+
+    <!-- Random construction notes scattered -->
+    <text x="6%" y="80%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">SOLID BEARING</text>
+    <text x="6%" y="60%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">DESIGN B16 FROM</text>
+    <text x="6%" y="63%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">SG-8 FOR 1 1/2"</text>
+    <text x="75%" y="85%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">REMOVE EXIST.</text>
+    <text x="75%" y="88%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">AND BUILD NEW</text>
+    <text x="28%" y="58%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">EXIST. WINDOW W/</text>
+    <text x="60%" y="62%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">EXIST. CEILING/FLOOR</text>
+    <text x="60%" y="65%" fill="white" font-size="3.5" font-family="monospace" opacity="0.35">ASSEMBLY ABOVE</text>
+  </svg>
+
+  <!-- Right-side gradient fade to dark navy -->
+  <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent via-60% to-[#1a2555]"></div>
+
+  <!-- Bottom-left subtle blue brighten -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#3b8fd4]/20 via-transparent to-transparent"></div>
+
+  <!-- Top and bottom subtle vignette -->
+  <div class="absolute inset-0 shadow-[inset_0_2px_8px_rgba(0,0,0,0.15),inset_0_-2px_8px_rgba(0,0,0,0.15)]"></div>
+</section>

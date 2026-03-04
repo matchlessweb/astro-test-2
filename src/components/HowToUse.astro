@@ -1,0 +1,78 @@
+---
+interface Step {
+  number: number;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  label?: string;
+  heading?: string;
+  steps?: Step[];
+  image?: string;
+}
+
+const {
+  label = 'How-to',
+  heading = 'How to use the BluePrint',
+  steps = [
+    {
+      number: 1,
+      title: 'Explore Wellness Courses',
+      description: 'Visit the Wellness Courses page to begin exploring of all the options available for participation.',
+    },
+    {
+      number: 2,
+      title: 'Make your selection',
+      description: "Enroll in any course by clicking the enrollment button on any course\u2019s page. Your enrollments will appear in your dashboard.",
+    },
+    {
+      number: 3,
+      title: 'Access your materials and participate',
+      description: 'All Wellness Course pages outline specific instructions for participation. Complete all requirements to receive completion credit.',
+    },
+  ],
+  image = 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop',
+} = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <!-- Left column: label, heading, steps -->
+      <div>
+        <p class="text-sm font-medium text-content-light mb-2">{label}</p>
+        <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-[#2e7fa1] leading-tight mb-10 italic">
+          {heading}
+        </h2>
+
+        <div class="flex flex-col gap-8">
+          {steps.map((step) => (
+            <div class="flex items-start gap-5">
+              <!-- Number badge with dashed border -->
+              <div class="shrink-0 w-14 h-14 rounded-lg border-2 border-dashed border-[#6dc0e0] flex items-center justify-center">
+                <span class="text-lg font-medium text-[#6dc0e0]">{step.number}</span>
+              </div>
+              <div>
+                <h3 class="text-lg md:text-xl font-bold text-content mb-1">{step.title}</h3>
+                <p class="text-content-light text-base leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right column: image -->
+      <div class="rounded-2xl overflow-hidden">
+        <img
+          src={image}
+          alt="Blueprint architectural drawings"
+          width={800}
+          height={600}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>

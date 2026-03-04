@@ -1,15 +1,200 @@
 ---
+import { Phone, Mail } from 'lucide-astro';
+
 interface Props {
     class?: string;
 }
 
 const { class: className } = Astro.props;
+
+const toolboxLinks = [
+  { label: 'Blog', href: '/blog' },
+  { label: 'Workouts', href: '/workouts' },
+  { label: 'Recipes', href: '/recipes' },
+  { label: 'Resources', href: '/resources' },
+  { label: 'Newsletter', href: '/newsletter' },
+  { label: 'Newsletter Archive', href: '/newsletter-archive' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const accountLinks = [
+  { label: '2026 Wellness Alignment Intake Form', href: '/intake-form' },
+  { label: 'Dashboard', href: '/dashboard' },
+  { label: 'Reset Password', href: '/reset-password' },
+  { label: 'Log Out', href: '/logout' },
+];
+
+const bottomLinks = [
+  { label: 'Privacy Policy', href: '/privacy-policy' },
+  { label: 'Terms of Service', href: '/terms-of-service' },
+  { label: 'Disclaimer', href: '/disclaimer' },
+];
 ---
 
-<footer class:list={["px-4 py-8 border-t border-outline-light", className]}>
-    <div class="max-w-5xl mx-auto text-center">
-        <p class="text-sm text-content-lighter">
-            Built with PhantomWP
-        </p>
+<footer class:list={["relative overflow-hidden bg-[#132248] text-white", className]}>
+  <!-- Blueprint background pattern -->
+  <!-- Fine grid lines -->
+  <div
+    class="absolute inset-0 opacity-10"
+    style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 18px 18px;"
+  ></div>
+  <!-- Major grid lines -->
+  <div
+    class="absolute inset-0 opacity-15"
+    style="background-image: linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px); background-size: 90px 90px;"
+  ></div>
+  <!-- Blueprint architectural SVG -->
+  <svg class="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <rect x="5%" y="8%" width="18%" height="40%" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="23%" y="8%" width="12%" height="25%" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="23%" y="33%" width="12%" height="30%" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="35%" y="5%" width="22%" height="35%" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="35%" y="40%" width="22%" height="25%" fill="none" stroke="white" stroke-width="1"/>
+    <rect x="57%" y="8%" width="15%" height="30%" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="57%" y="38%" width="15%" height="28%" fill="none" stroke="white" stroke-width="1"/>
+    <rect x="72%" y="5%" width="18%" height="40%" fill="none" stroke="white" stroke-width="1.2"/>
+    <rect x="72%" y="45%" width="18%" height="22%" fill="none" stroke="white" stroke-width="1"/>
+    <line x1="12%" y1="8%" x2="12%" y2="38%" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <line x1="5%" y1="28%" x2="23%" y2="28%" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <line x1="40%" y1="5%" x2="40%" y2="40%" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <line x1="35%" y1="22%" x2="57%" y2="22%" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <line x1="80%" y1="5%" x2="80%" y2="45%" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <line x1="72%" y1="25%" x2="90%" y2="25%" stroke="white" stroke-width="0.8" opacity="0.6"/>
+    <text x="10%" y="24%" fill="white" font-size="5" font-family="monospace" opacity="0.35">PARKING</text>
+    <text x="38%" y="18%" fill="white" font-size="6" font-family="monospace" opacity="0.35">BEDROOM</text>
+    <text x="59%" y="22%" fill="white" font-size="5" font-family="monospace" opacity="0.35">CLOSET</text>
+    <text x="74%" y="20%" fill="white" font-size="5" font-family="monospace" opacity="0.35">KITCHEN</text>
+    <text x="38%" y="50%" fill="white" font-size="4" font-family="monospace" opacity="0.35">COVERED PORCH</text>
+    <text x="25%" y="28%" fill="white" font-size="5" font-family="monospace" opacity="0.35">BATHROOM</text>
+    <line x1="5%" y1="4%" x2="23%" y2="4%" stroke="white" stroke-width="0.4" opacity="0.35"/>
+    <line x1="5%" y1="3%" x2="5%" y2="5%" stroke="white" stroke-width="0.4" opacity="0.35"/>
+    <line x1="23%" y1="3%" x2="23%" y2="5%" stroke="white" stroke-width="0.4" opacity="0.35"/>
+    <text x="11%" y="3.5%" fill="white" font-size="3.5" font-family="monospace" opacity="0.3">11 7/8" T.O. 8' O.C.</text>
+  </svg>
+
+  <!-- Compass icon top-right -->
+  <div class="absolute top-8 right-8 md:top-12 md:right-16 opacity-30">
+    <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="30" r="28" stroke="white" stroke-width="1.5"/>
+      <circle cx="30" cy="30" r="3" fill="white"/>
+      <path d="M30 6L33 24H27L30 6Z" fill="white" opacity="0.8"/>
+      <path d="M30 54L27 36H33L30 54Z" fill="white" opacity="0.4"/>
+      <path d="M6 30L24 27V33L6 30Z" fill="white" opacity="0.4"/>
+      <path d="M54 30L36 33V27L54 30Z" fill="white" opacity="0.4"/>
+      <text x="28" y="5" fill="white" font-size="6" font-family="sans-serif" font-weight="bold">N</text>
+    </svg>
+  </div>
+
+  <!-- Footer content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 pt-16 pb-8">
+    <!-- Logo -->
+    <div class="mb-10">
+      <div class="text-white">
+        <span class="block text-lg font-light tracking-wide leading-none">the</span>
+        <span class="block text-5xl md:text-6xl font-black leading-[0.9] tracking-tight">Blue</span>
+        <span class="block text-5xl md:text-6xl font-black leading-[0.9] tracking-tight">Print</span>
+      </div>
+      <!-- Decorative lines on left side of logo -->
     </div>
+
+    <!-- Divider -->
+    <div class="border-t border-[#2a5a9e] mb-12"></div>
+
+    <!-- Four column grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <!-- Column 1: Wellness Courses -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">Wellness Courses</h3>
+      </div>
+
+      <!-- Column 2: Toolbox -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">Toolbox</h3>
+        <ul class="space-y-3">
+          {toolboxLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-white/80 hover:text-white transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 3: My Account -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">My Account</h3>
+        <ul class="space-y-3">
+          {accountLinks.map((link) => (
+            <li>
+              <a href={link.href} class="text-white/80 hover:text-white transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 4: Newsletter -->
+      <div>
+        <h3 class="text-xl font-bold mb-4">The BluePrint Newsletter</h3>
+        <p class="text-white/80 text-sm leading-relaxed mb-6">
+          Helpful info about health, wellness, and fitness delivered to your inbox once per month.
+        </p>
+
+        <!-- Learn About the Newsletter button -->
+        <a
+          href="/newsletter"
+          class="inline-block px-6 py-3 bg-white text-[#132248] font-semibold rounded-lg hover:bg-white/90 transition-colors duration-200 mb-4"
+        >
+          Learn About the Newsletter
+        </a>
+
+        <!-- Mailing list status -->
+        <div class="bg-[#c8d9a0]/80 text-[#132248] rounded-lg px-6 py-3 font-semibold text-sm mb-3 inline-block">
+          ✅ You're on the BluePrint Newsletter mailing list!
+        </div>
+
+        <p class="text-white/60 text-xs leading-relaxed mb-8">
+          You previously opted-in to the BluePrint Newsletter mailing list.<br />
+          <a href="/unsubscribe" class="underline hover:text-white/80">Click here if you'd like to unsubscribe</a>.
+        </p>
+
+        <!-- Contact info -->
+        <div class="flex gap-10">
+          <div>
+            <p class="font-bold text-sm mb-2">Call us</p>
+            <a href="tel:6016645921" class="flex items-center gap-2 text-white/80 hover:text-white text-sm transition-colors">
+              <Phone class="w-4 h-4" />
+              (601) 664-5921
+            </a>
+          </div>
+          <div>
+            <p class="font-bold text-sm mb-2">Email us</p>
+            <a href="mailto:blueprint@bcbsms.com" class="flex items-center gap-2 text-white/80 hover:text-white text-sm transition-colors">
+              <Mail class="w-4 h-4" />
+              blueprint@bcbsms.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-[#2a5a9e] mt-14 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-white/50 text-sm">
+        Copyright 2026 &copy; the BluePrint
+      </p>
+      <div class="flex items-center gap-6">
+        {bottomLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-white/50 hover:text-white text-sm transition-colors duration-200"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
 </footer>

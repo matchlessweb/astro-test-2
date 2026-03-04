@@ -1,0 +1,118 @@
+---
+import { CircleCheckBig } from 'lucide-astro';
+
+interface Props {
+  label?: string;
+  title?: string;
+  description?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  features?: string[];
+  images?: { src: string; alt: string }[];
+}
+
+const {
+  label = 'Build a healthy lifestyle',
+  title = 'Your Needs +<br/>Your Blueprint<br/>= Better Health',
+  description = 'Improve your health and wellness with a simple, holistic plan that is made to work for you.',
+  primaryCtaText = 'Wellness Courses',
+  primaryCtaHref = '/courses',
+  secondaryCtaText = 'Contact Blues Fitness',
+  secondaryCtaHref = '/contact',
+  features = ['Wellness Coaching', 'Health Education', 'Support for Your Journey'],
+  images = [
+    { src: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&h=500&fit=crop', alt: 'Man cooking in the kitchen' },
+    { src: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop', alt: 'Gym equipment' },
+    { src: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=300&fit=crop', alt: 'Person stretching and exercising' },
+  ],
+} = Astro.props;
+---
+
+<section class="px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+  <div class="max-w-7xl mx-auto bg-[#e8f4f8] rounded-2xl overflow-hidden">
+    <div class="grid lg:grid-cols-2 gap-0">
+      <!-- Left Content -->
+      <div class="px-8 sm:px-12 lg:px-16 py-12 lg:py-16 flex flex-col justify-center">
+        <!-- Label -->
+        <p class="text-sm md:text-base text-content italic mb-4">
+          {label}
+        </p>
+
+        <!-- Heading -->
+        <h2
+          class="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a5a7a] leading-[1.15] tracking-tight mb-6"
+          set:html={title}
+        />
+
+        <!-- Description -->
+        <p class="text-base md:text-lg text-content-light leading-relaxed mb-8 max-w-md">
+          {description}
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center gap-4 mb-8">
+          <a
+            href={primaryCtaHref}
+            class="inline-flex items-center justify-center px-7 py-3.5 bg-[#2b3a67] hover:bg-[#1f2d52] text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            {primaryCtaText}
+          </a>
+          <a
+            href={secondaryCtaHref}
+            class="inline-flex items-center justify-center px-7 py-3.5 border-2 border-[#1a5a7a] text-[#1a5a7a] hover:bg-[#1a5a7a] hover:text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5"
+          >
+            {secondaryCtaText}
+          </a>
+        </div>
+
+        <!-- Feature badges -->
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+          {features.map((feature) => (
+            <div class="flex items-center gap-2">
+              <CircleCheckBig class="w-5 h-5 text-[#2ba4c8] shrink-0" />
+              <span class="text-sm font-medium text-content">{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right Image Collage -->
+      <div class="relative min-h-[350px] lg:min-h-0 overflow-hidden">
+        <!-- Top large image -->
+        <div class="absolute top-4 right-4 left-4 lg:left-0 bottom-[45%] rounded-xl overflow-hidden shadow-lg transform rotate-1">
+          <img
+            src={images[0].src}
+            alt={images[0].alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Bottom-left image -->
+        <div class="absolute bottom-4 left-4 lg:left-0 w-[55%] top-[50%] rounded-xl overflow-hidden shadow-lg transform -rotate-1">
+          <img
+            src={images[1].src}
+            alt={images[1].alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Bottom-right image -->
+        <div class="absolute bottom-4 right-4 left-[52%] lg:left-[48%] top-[50%] rounded-xl overflow-hidden shadow-lg transform rotate-2">
+          <img
+            src={images[2].src}
+            alt={images[2].alt}
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Decorative corner accent -->
+        <div class="absolute top-[47%] left-[50%] w-16 h-16 border-2 border-[#2ba4c8]/30 rounded-lg transform -translate-x-1/2 -translate-y-1/2 rotate-12"></div>
+      </div>
+    </div>
+  </div>
+</section>

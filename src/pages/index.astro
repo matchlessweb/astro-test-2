@@ -4,9 +4,15 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Section from '../components/Section.astro';
 import Hero from '../components/Hero.astro';
-import Features from '../components/Features.astro';
-import CTASection from '../components/CTASection.astro';
-import LogoGrid from '../components/LogoGrid.astro';
+import BlueprintBanner from '../components/BlueprintBanner.astro';
+import WhatIsBlueprint from '../components/WhatIsBlueprint.astro';
+import HowToUse from '../components/HowToUse.astro';
+import ExploreWellness from '../components/ExploreWellness.astro';
+import FAQ from '../components/FAQ.astro';
+
+
+import FooterCTA from '../components/FooterCTA.astro';
+
 ---
 
 <BaseLayout title="Home">
@@ -16,14 +22,27 @@ import LogoGrid from '../components/LogoGrid.astro';
     <!-- Hero Section -->
     <Hero />
     
-    <!-- Logo Grid Section -->
-    <LogoGrid />
+    <!-- Blueprint Banner -->
+    <BlueprintBanner />
     
-    <!-- Features Section -->
-    <Features />
+    <!-- What is the BluePrint -->
+    <WhatIsBlueprint />
     
-    <!-- CTA Section -->
-    <CTASection />
+    <!-- How to Use the BluePrint -->
+    <HowToUse />
+
+    <!-- Explore Wellness Courses -->
+    <ExploreWellness />
+
+    <!-- FAQ Section -->
+    <FAQ />
+
+
+    
+
+
+    <!-- Footer CTA -->
+    <FooterCTA />
   </main>
   
   <Footer />

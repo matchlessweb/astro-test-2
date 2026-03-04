@@ -1,0 +1,94 @@
+---
+interface CardItem {
+  title: string;
+  description: string;
+  image: string;
+}
+
+interface Props {
+  heading?: string;
+  body1?: string;
+  body2?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  cards?: CardItem[];
+}
+
+const {
+  heading = 'What is the BluePrint?',
+  body1 = 'BluePrint is the online hub for BCBSMS employees to learn about, enroll in, and participate in Wellness Courses to meet annual Employee Health Plan requirements.',
+  body2 = 'As of 2025, all aspects of EHP Wellness Courses (formally known as "annual wellness activities") are managed here in the BluePrint.',
+  ctaText = 'Explore Wellness Courses',
+  ctaHref = '/courses',
+  cards = [
+    {
+      title: 'Explore Options',
+      description: 'Learn about all the Wellness Course offerings available to you.',
+      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop',
+    },
+    {
+      title: 'Enroll & Participate',
+      description: 'Sign up & participate in one Wellness Course that interests you.',
+      image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop',
+    },
+    {
+      title: 'Get Support',
+      description: 'Through Wellness Coaching and health education provided by your Health and Wellness Teams.',
+      image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=300&fit=crop',
+    },
+  ],
+} = Astro.props;
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Left tall teal card -->
+      <div class="bg-[#2e7fa1] rounded-2xl p-10 md:p-14 flex flex-col justify-center text-white min-h-[500px] lg:min-h-0">
+        <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-bold leading-tight mb-6">
+          {heading}
+        </h2>
+        <p class="text-white/90 text-base md:text-lg leading-relaxed mb-5">
+          {body1}
+        </p>
+        <p class="text-white/90 text-base md:text-lg leading-relaxed mb-10">
+          {body2}
+        </p>
+        <div>
+          <a
+            href={ctaHref}
+            class="inline-flex items-center justify-center px-8 py-3.5 bg-white/15 hover:bg-white/25 border border-white/40 text-white font-semibold rounded-lg transition-all duration-200"
+          >
+            {ctaText}
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column: 3 stacked cards -->
+      <div class="flex flex-col gap-6">
+        {cards.map((card) => (
+          <div class="flex items-stretch border border-outline rounded-2xl overflow-hidden bg-white">
+            <div class="flex-1 p-6 md:p-8 flex flex-col justify-center">
+              <h3 class="text-xl md:text-2xl font-bold text-content mb-2">
+                {card.title}
+              </h3>
+              <p class="text-content-light text-base leading-relaxed">
+                {card.description}
+              </p>
+            </div>
+            <div class="w-36 sm:w-44 md:w-52 shrink-0">
+              <img
+                src={card.image}
+                alt={card.title}
+                width={400}
+                height={300}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
