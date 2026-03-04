@@ -17,6 +17,7 @@
     "@astrojs/sitemap": "^3.2.0",
     "@fontsource-variable/space-grotesk": "^5.2.10",
     "@fontsource-variable/urbanist": "^5.2.7",
+    "@fontsource/zilla-slab": "^5.2.8",
     "@tailwindcss/vite": "^4.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",

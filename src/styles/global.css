@@ -1,4 +1,8 @@
-@import '@fontsource-variable/urbanist';
+@import '@fontsource/zilla-slab/300.css';
+@import '@fontsource/zilla-slab/400.css';
+@import '@fontsource/zilla-slab/500.css';
+@import '@fontsource/zilla-slab/600.css';
+@import '@fontsource/zilla-slab/700.css';
 @import "tailwindcss";
 
 /* Theme imports - theme.css is managed by Token Designer */
