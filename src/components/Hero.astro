@@ -14,7 +14,7 @@ interface Props {
 
 const {
   label = '2026 Employee Health Plan',
-  title = 'Your health and wellness<br />starts with the <span class="text-[#2b3a67]">Blue</span><span class="text-[#2ba4c8]">Print</span>.',
+  title = 'Your health and wellness<br />starts with the <span class="text-primary-dark">Blue</span><span class="text-primary">Print</span>.',
   subtitle = 'The BluePrint is your home base for all things Employee Health Plan.',
   features = ['Educational Courses', 'Fitness Challenges', 'Coaching Programs', 'Journaling Activities'],
   primaryCtaText = 'Wellness Courses',
@@ -39,7 +39,7 @@ const {
 
     <!-- Heading -->
     <h1
-      class="text-4xl sm:text-5xl md:text-6xl font-bold text-[#2ba4c8] leading-[1.2] tracking-tight mb-6 text-pretty"
+      class="text-4xl sm:text-5xl md:text-6xl font-bold text-primary leading-[1.2] tracking-tight mb-6 text-pretty"
       set:html={title}
     />
 
@@ -52,7 +52,7 @@ const {
     <div class="inline-flex flex-wrap items-center justify-center gap-x-8 gap-y-4 border border-outline rounded-xl px-8 py-5 mb-10 bg-white/70 backdrop-blur-sm">
       {features.map((feature) => (
         <div class="flex items-center gap-2.5">
-          <CircleCheckBig class="w-5 h-5 text-[#6b9e7a] shrink-0" />
+          <CircleCheckBig class="w-5 h-5 text-primary shrink-0" />
           <span class="text-sm md:text-base font-medium text-content">{feature}</span>
         </div>
       ))}
@@ -62,13 +62,13 @@ const {
     <div class="flex flex-wrap items-center justify-center gap-4">
       <a
         href={primaryCtaHref}
-        class="inline-flex items-center justify-center px-8 py-3.5 bg-[#2ba4c8] hover:bg-[#2593b5] text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+        class="inline-flex items-center justify-center px-8 py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
       >
         {primaryCtaText}
       </a>
       <a
         href={secondaryCtaHref}
-        class="inline-flex items-center justify-center px-8 py-3.5 bg-[#2b3a67] hover:bg-[#1f2d52] text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+        class="inline-flex items-center justify-center px-8 py-3.5 bg-secondary hover:bg-secondary-dark text-white font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
       >
         {secondaryCtaText}
       </a>

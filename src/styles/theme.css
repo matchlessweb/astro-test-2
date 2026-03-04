@@ -15,15 +15,15 @@
 @theme {  --font-sans: 'Zilla Slab', serif;
   --font-heading: 'Zilla Slab', serif;
 
---color-primary: #6366f1;
-        --color-primary-dark: #4f46e5;
-        --color-primary-light: #818cf8;
-        --color-secondary: #8b5cf6;
-        --color-secondary-dark: #7c3aed;
-        --color-secondary-light: #a78bfa;
-        --color-accent: #06b6d4;
-        --color-accent-dark: #0891b2;
-        --color-accent-light: #22d3ee;
+--color-primary: #dc2626;
+        --color-primary-dark: #991b1b;
+        --color-primary-light: #f87171;
+        --color-secondary: #b91c1c;
+        --color-secondary-dark: #7f1d1d;
+        --color-secondary-light: #fca5a5;
+        --color-accent: #e11d48;
+        --color-accent-dark: #be123c;
+        --color-accent-light: #fb7185;
         --color-surface: #ffffff;
         --color-surface-alt: #f9fafb;
         --color-surface-hover: #f3f4f6;

@@ -42,7 +42,7 @@ const {
       <!-- Left column: label, heading, steps -->
       <div>
         <p class="text-sm font-medium text-content-light mb-2">{label}</p>
-        <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-[#2e7fa1] leading-tight mb-10 italic">
+        <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-primary leading-tight mb-10 italic">
           {heading}
         </h2>
 
@@ -50,8 +50,8 @@ const {
           {steps.map((step) => (
             <div class="flex items-start gap-5">
               <!-- Number badge with dashed border -->
-              <div class="shrink-0 w-14 h-14 rounded-lg border-2 border-dashed border-[#6dc0e0] flex items-center justify-center">
-                <span class="text-lg font-medium text-[#6dc0e0]">{step.number}</span>
+              <div class="shrink-0 w-14 h-14 rounded-lg border-2 border-dashed border-primary-light flex items-center justify-center">
+                <span class="text-lg font-medium text-primary-light">{step.number}</span>
               </div>
               <div>
                 <h3 class="text-lg md:text-xl font-bold text-content mb-1">{step.title}</h3>
